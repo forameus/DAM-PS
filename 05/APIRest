@@ -1,0 +1,25 @@
+API Rest
+
+GET /biblioteca/libros/             Mostrar libros
+GET /biblioteca/libros/id           Mostrar un libro por id
+GET /biblioteca/autores             Mostrar autores
+GET /biblioteca/autores/id          Mostrar un autor por id
+GET /biblioteca/usuarios/           Mostrar usuarios
+GET /biblioteca/usuarios/id         Mostrar un usario por id
+GET /biblioteca/prestamos           Mostrar préstamos
+
+POST /biblioteca/usuarios           Añadir un usuario
+POST /biblioteca/autores            Añadir un autor
+POST /biblioteca/libros             Añadir un libro
+POST /biblioteca/prestamos          Añadir un prestamo
+
+PUT /biblioteca/usuarios/id         Actualizar un usuario
+PUT /biblioteca/autores/id          Actualizar un autor
+PUT /biblioteca/libros/id           Actualizar un libro
+PUT /biblioteca/prestamos/id        Actualizar un préstamo
+
+DELETE /biblioteca/usuarios/id      Eliminar un usuario
+DELETE /biblioteca/autores/id       Eliminar un autor
+DELETE /biblioteca/libros/id        Eliminar un libro
+DELETE /biblioteca/prestamos/id     Eliminar un préstamo
+

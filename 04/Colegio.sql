@@ -38,8 +38,8 @@ CREATE TABLE `Alumnos` (
 
 INSERT INTO `Alumnos` (`id`, `nombre`, `apellidos`) VALUES
 (1, 'Rafael', 'Alberti'),
-(6, ' Ãlvaro ', ' Ojeda'),
-(7, ' Gustavo ', ' GarcÃ­a');
+(2, ' Ávaro ', ' Ojeda'),
+(3, ' Gustavo ', ' García');
 
 --
 -- Índices para tablas volcadas
@@ -59,7 +59,7 @@ ALTER TABLE `Alumnos`
 -- AUTO_INCREMENT de la tabla `Alumnos`
 --
 ALTER TABLE `Alumnos`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

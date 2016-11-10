@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - Biblioteca@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="Biblioteca">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="Colegio"/>
+    <schema id="3" name="information_schema"/>
+    <schema id="4" name="mysql"/>
+    <schema id="5" name="performance_schema"/>
+    <schema id="6" name="phpmyadmin"/>
+    <schema id="7" name="test"/>
+    <table id="8" parent="1" name="Autores"/>
+    <table id="9" parent="1" name="Libros"/>
+    <table id="10" parent="1" name="Usuarios"/>
+    <table id="11" parent="1" name="table_name"/>
+    <column id="12" parent="8" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(9) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="13" parent="8" name="Nombre">
+      <mandatory>1</mandatory>
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <column id="14" parent="8" name="Apellidos">
+      <mandatory>1</mandatory>
+      <data-type>varchar(40)|0</data-type>
+    </column>
+    <key id="15" parent="8" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="16" parent="9" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(9) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="17" parent="9" name="Titulo">
+      <mandatory>1</mandatory>
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <key id="18" parent="9" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="19" parent="10" name="Nombre">
+      <mandatory>1</mandatory>
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <column id="20" parent="10" name="Apellidos">
+      <mandatory>1</mandatory>
+      <data-type>varchar(40)|0</data-type>
+    </column>
+    <column id="21" parent="10" name="DNI">
+      <mandatory>1</mandatory>
+      <data-type>varchar(9)|0</data-type>
+    </column>
+    <key id="22" parent="10" name="PRIMARY">
+      <columns>DNI</columns>
+      <primary>1</primary>
+    </key>
+    <column id="23" parent="11" name="Nombre">
+      <mandatory>1</mandatory>
+      <data-type>varchar(8)|0</data-type>
+    </column>
+    <column id="24" parent="11" name="Apellidos">
+      <mandatory>1</mandatory>
+      <data-type>varchar(8)|0</data-type>
+    </column>
+    <column id="25" parent="11" name="DNI">
+      <mandatory>1</mandatory>
+      <data-type>varchar(9)|0</data-type>
+    </column>
+    <key id="26" parent="11" name="PRIMARY">
+      <columns>DNI</columns>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>
