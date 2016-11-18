@@ -53,14 +53,16 @@ if (isset($_SERVER['HTTP_ACCEPT'])) {
 $req = new Request($verb, $url_elements, $query_string, $body, $content_type, $accept);
 
 
-$controller_name = ucfirst($url_elements[0]) . 'Controller';
+$controller_name = ucfirst($url_elements[1]) . 'Controller';
 if (class_exists($controller_name)) {
+    echo 'ok';
     $controller = new $controller_name();
     $action_name = 'manage' . ucfirst(strtolower($verb)) . 'Verb';
     $controller->$action_name($req);
 
 }
 else {
+    echo 'no';
     $controller = new NotFoundController();
     $controller->manage($req);
 }

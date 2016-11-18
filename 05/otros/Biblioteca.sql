@@ -40,6 +40,12 @@ CREATE TABLE Libros_Autores
 INSERT INTO Autores VALUES (NULL,'Miguel', 'de Cervantes Saavedra');
 INSERT INTO Libros VALUES (NULL,'Don Quijote de la Mancha');
 INSERT INTO Libros_Autores VALUES (1,1);
+INSERT INTO Autores VALUES (NULL,'Leopoldo', 'Alas');
+INSERT INTO Libros VALUES (NULL,'La Regenta');
+INSERT INTO Libros_Autores VALUES (2,2);
+INSERT INTO Autores VALUES (NULL,'Fernando', 'de Rojas');
+INSERT INTO Libros VALUES (NULL,'La Celestina');
+INSERT INTO Libros_Autores VALUES (3,3);
 INSERT INTO Usuarios VALUES ('Alberto', 'Navarro Gordillo', '77894561H');
 INSERT INTO Prestamos VALUES ('77894561H', 1);
 
