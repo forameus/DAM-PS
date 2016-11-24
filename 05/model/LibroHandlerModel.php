@@ -13,15 +13,6 @@ class LibroHandlerModel
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
-
-        //IMPORTANT: we have to be very careful about automatic data type conversions in MySQL.
-        //For example, if we have a column named "cod", whose type is int, and execute this query:
-        //SELECT * FROM table WHERE cod = "3yrtdf"
-        //it will be converted into:
-        //SELECT * FROM table WHERE cod = 3
-        //That's the reason why I decided to create isValid method,
-        //I had problems when the URI was like libro/2jfdsyfsd
-
         $valid = self::isValid($id);
 
         //If the $id is valid or the client asks for the collection ($id is null)
@@ -84,6 +75,32 @@ class LibroHandlerModel
             $res = true;
         }
         return $res;
+    }
+
+
+
+    public static function putLibro($titulo)
+    {
+        $listaLibros = null;
+
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+
+
+        if ($titulo != null) {
+            $query = "INSERT INTO " . \ConstantesDB\ConsLibrosModel::TABLE_NAME . "VALUES (NULL, '" . $titulo . "' ); ";
+
+            $prep_query = $db_connection->prepare($query);
+            $prep_query->execute();
+
+        }
+
+            /*if ($id != null) {
+                $prep_query->bind_param('s', $id);
+            }*/
+
+        $db_connection->close();
     }
 
 }

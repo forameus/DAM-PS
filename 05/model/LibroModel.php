@@ -30,6 +30,7 @@ class LibroModel implements JsonSerializable
         );
     }
 
+
     public function __sleep(){
         return array('titulo' , 'codigo');
     }

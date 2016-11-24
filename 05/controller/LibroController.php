@@ -41,4 +41,23 @@ class LibroController extends Controller
 
     }
 
+
+    public function managePutVerb(Request $request)
+    {
+
+        $listaLibros = null;
+        $titulo = null;
+        $response = null;
+        $code = null;
+
+        //if the URI refers to a libro entity, instead of the libro collection
+        if (isset($request->getUrlElements()[2])) {
+            $titulo = $request->getUrlElements()[2];
+        }
+
+
+        LibroHandlerModel::putLibro($titulo);
+
+    }
+
 }
