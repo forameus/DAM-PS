@@ -1,6 +1,6 @@
 <?php
 
-require_once "ConsLibrosModel.php";
+require_once "Constantes.php";
 
 
 class LibroHandlerModel
@@ -17,12 +17,12 @@ class LibroHandlerModel
 
         //If the $id is valid or the client asks for the collection ($id is null)
         if ($valid === true || $id == null) {
-            $query = "SELECT " . \ConstantesDB\ConsLibrosModel::ID . ","
-                . \ConstantesDB\ConsLibrosModel::TITULO . " FROM " . \ConstantesDB\ConsLibrosModel::TABLE_NAME;
+            $query = "SELECT " . \ConstantesDB\Constantes::ID . ","
+                . \ConstantesDB\Constantes::TITULO . " FROM " . \ConstantesDB\Constantes::TABLA_LIBROS;
 
 
             if ($id != null) {
-                $query = $query . " WHERE " . \ConstantesDB\ConsLibrosModel::ID . " = ?";
+                $query = $query . " WHERE " . \ConstantesDB\Constantes::ID . " = ?";
             }
 
             $prep_query = $db_connection->prepare($query);
@@ -89,7 +89,7 @@ class LibroHandlerModel
 
 
         if ($titulo != null) {
-            $query = "INSERT INTO " . \ConstantesDB\ConsLibrosModel::TABLE_NAME . "VALUES (NULL, '" . $titulo . "' ); ";
+            $query = "INSERT INTO " . \ConstantesDB\Constantes::TABLA_LIBROS . "VALUES (NULL, '" . $titulo . "' ); ";
 
             $prep_query = $db_connection->prepare($query);
             $prep_query->execute();

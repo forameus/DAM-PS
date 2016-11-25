@@ -4,41 +4,29 @@
 class LibroModel implements JsonSerializable
 {
     private $titulo;
-    private $codigo;
+    private $id;
 
-    public function __construct($cod,$tit)
+    public function __construct($id,$tit)
     {
-        $this->codigo=$cod;
+        $this->id=$id;
         $this->titulo=$tit;
     }
 
-    /**
-     * Specify data which should be serialized to JSON
-     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
-     * @return mixed data which can be serialized by <b>json_encode</b>,
-     * which is a value of any type other than a resource.
-     * @since 5.4.0
-     */
 
-    //Needed if the properties of the class are private.
-    //Otherwise json_encode will encode blank objects
     function jsonSerialize()
     {
         return array(
-            'titulo' => $this->titulo,
-            'codigo' => $this->codigo
+            'id' => $this->id,
+            'titulo' => $this->titulo
         );
     }
 
 
     public function __sleep(){
-        return array('titulo' , 'codigo');
+        return array('id','titulo');
     }
 
 
-    /**
-     * @return mixed
-     */
     public function getTitulo()
     {
         return $this->titulo;
@@ -57,15 +45,15 @@ class LibroModel implements JsonSerializable
      */
     public function getCodigo()
     {
-        return $this->codigo;
+        return $this->id;
     }
 
     /**
      * @param mixed $codigo
      */
-    public function setCodigo($codigo)
+    public function setCodigo($id)
     {
-        $this->codigo = $codigo;
+        $this->id = $id;
     }
 
 
