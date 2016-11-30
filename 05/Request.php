@@ -46,12 +46,14 @@ class Request
             case "application/json":
                 $this->format = "json";
                 $parameters = json_decode($body);
-                /*$body_params = json_decode($body);
-                if ($body_params) {
+                $body_params = json_decode($body);
+
+
+                if (count($body_params) > 1) {
                     foreach ($body_params as $param_name => $param_value) {
                         $parameters[$param_name] = $param_value;
                     }
-                }*/
+                }
 
                 break;
             case "application/x-www-form-urlencoded":

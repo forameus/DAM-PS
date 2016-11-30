@@ -79,28 +79,50 @@ class LibroHandlerModel
 
 
 
-    public static function putLibro($titulo)
+    public static function putLibro($listaLibros)
     {
-        $listaLibros = null;
-
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
+        if ($listaLibros != null) {
+            if(count($listaLibros) > 1) {
+                foreach ($listaLibros as $titulo => $valor) {
+                    $query = "INSERT INTO " . \ConstantesDB\Constantes::TABLA_LIBROS . " VALUES (NULL, '" . $valor->titulo . "' ); ";
 
+                    $db_connection->query($query);
+                }
+            }
+            else{
+                $query = "INSERT INTO " . \ConstantesDB\Constantes::TABLA_LIBROS . " VALUES (NULL, '" . $listaLibros[0] . "' ); ";
 
-        if ($titulo != null) {
-            $query = "INSERT INTO " . \ConstantesDB\Constantes::TABLA_LIBROS . "VALUES (NULL, '" . $titulo . "' ); ";
+                $db_connection->query($query);
+            }
 
-            $prep_query = $db_connection->prepare($query);
-            $prep_query->execute();
 
         }
 
-            /*if ($id != null) {
-                $prep_query->bind_param('s', $id);
-            }*/
+        //$query = "INSERT INTO " . \ConstantesDB\Constantes::TABLA_LIBROS . " VALUES (NULL, '" . $listaLibros . "' ); ";
 
+        //$db_connection->query($query);
         $db_connection->close();
     }
 
+    public static function deleteLibro($id)
+    {
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        if ($id != null){
+
+            $query = "INSERT INTO " . \ConstantesDB\Constantes::TABLA_LIBROS . " VALUES (NULL, '" . $listaLibros[0] . "' ); ";
+
+            $db_connection->query($query);
+
+        }
+
+        //$query = "INSERT INTO " . \ConstantesDB\Constantes::TABLA_LIBROS . " VALUES (NULL, '" . $listaLibros . "' ); ";
+
+        //$db_connection->query($query);
+        $db_connection->close();
+    }
 }

@@ -5,7 +5,6 @@ require_once "Constantes.php";
 
 class AutorHandlerModel
 {
-
     public static function getAutor($id)
     {
         $listaAutores = null;
