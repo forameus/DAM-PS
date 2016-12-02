@@ -60,7 +60,7 @@ class LibroHandlerModel
         }
         $db_connection->close();
 
-        return $listaLibros;
+        return $listaLibros[0];
     }
 
     //returns true if $id is a valid id for a book
