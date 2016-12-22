@@ -58,5 +58,4 @@ class ProductoController extends Controller
         $response = new Response($code);
         $response->generate();
     }
-
 }
