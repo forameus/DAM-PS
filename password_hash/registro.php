@@ -49,7 +49,7 @@ if (isset($_POST["user"])) {
 
         $conn->close();
     } else {
-        echo 'Error, las contraseñas no coinciden';
+        echo '<h3 style="color: red">Error, las contraseñas no coinciden</h3>';
         echo $html;
     }
 } else echo $html;
