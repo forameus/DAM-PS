@@ -34,14 +34,14 @@ if (isset($_POST["user"])) {
         $sql_query = "SELECT username, password FROM usuarios WHERE username='" . $_POST["user"] . "';";
         $result = $conn->query($sql_query);
         if ($result->num_rows > 0)
-            echo "Error: ya existe un usuario con ese nombre.";
+            echo '<h3 style="color: red">Error: ya existe un usuario con ese nombre</h3>'.$html;
         else {
 
             //Insertar el usuario
             $sql = "INSERT INTO usuarios VALUES (null,'" . $_POST["user"] . "', '" .password_hash($_POST["pass1"], PASSWORD_DEFAULT) . "')";
             if ($conn->query($sql) === TRUE) {
                 echo "<p>Se ha registrado correctamente<p>";
-                echo "<a href='login.php'>Volver al login<a>";
+                echo "<a href='index.php'>Volver al login<a>";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }

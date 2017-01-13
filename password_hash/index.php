@@ -35,7 +35,7 @@ if (isset($_POST["user"])) {
 
     }
     else
-        echo 'Usuario no encontrado';
+        echo '<h3 style="color: red">Usuario no encontrado</h3>'.$html;
     $mysqli->close();
 } else {
     echo $html;
