@@ -1,3 +1,4 @@
+package waitNotify;
 import java.util.Random;
 
 public class Productor implements Runnable{

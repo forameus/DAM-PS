@@ -1,3 +1,4 @@
+package waitNotify;
 import java.util.Arrays;
 
 public class Consumidor implements Runnable {
