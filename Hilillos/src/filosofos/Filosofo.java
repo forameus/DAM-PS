@@ -2,16 +2,54 @@ package filosofos;
 
 import java.util.Random;
 
-public class Filosofo {
+public class Filosofo extends Thread {
 
 	private String nombre;
+	private Monitor monitor;
 
-	public Filosofo() {
+	public Filosofo(Monitor m) {
+		monitor = m;
 		nombre = generadorNombre();
 	}
 
-	public Filosofo(String nombre) {
+	public Filosofo(Monitor m,String nombre) {
+		monitor = m;
 		this.nombre = nombre;
+	}
+	
+	public void pensar(){
+		try {
+			System.out.println("Filosofo " + nombre+" está pensando.");        
+			Thread.sleep((int)(Math.random()*(4000 - 1000))+1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void comer(){
+		try {
+			System.out.println("Filosofo " + nombre+" está comiendo.");        
+			Thread.sleep((int)(Math.random()*(4000 - 1000))+1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void run() {
+	    while (true) {
+	    	pensar();
+	    	cogerPalillos();
+	    	comer();	    	
+	        dejarPalillos();
+	    }
+	}
+
+	private void cogerPalillos() {
+		
+	}
+	
+	private void dejarPalillos() {		
+		
 	}
 
 	public String getNombre() {
@@ -26,7 +64,6 @@ public class Filosofo {
 	public String toString() {
 		return "Filosofo " + nombre;
 	}
-
 	private String generadorNombre() {
 		String res = "";
 		Random r = new Random();
