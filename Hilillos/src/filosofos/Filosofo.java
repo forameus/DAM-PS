@@ -5,15 +5,20 @@ import java.util.Random;
 public class Filosofo extends Thread {
 
 	private String nombre;
-	private Monitor monitor;
-
-	public Filosofo(Monitor m) {
-		monitor = m;
+	private Palillo palilloDerecho;
+	private Palillo palilloIzquierdo;	
+	private int intentos = 10;
+	private int contador = 0;
+	
+	public Filosofo(Palillo palilloDerecho, Palillo palilloIzquierdo) {
+		this.palilloDerecho = palilloDerecho;
+		this.palilloIzquierdo = palilloIzquierdo;
 		nombre = generadorNombre();
 	}
 
-	public Filosofo(Monitor m,String nombre) {
-		monitor = m;
+	public Filosofo(Palillo palilloDerecho, Palillo palilloIzquierdo, String nombre) {
+		this.palilloDerecho = palilloDerecho;
+		this.palilloIzquierdo = palilloIzquierdo;
 		this.nombre = nombre;
 	}
 	
@@ -28,7 +33,7 @@ public class Filosofo extends Thread {
 	
 	public void comer(){
 		try {
-			System.out.println("Filosofo " + nombre+" está comiendo.");        
+			System.out.println("Filosofo " + nombre+" está COMIENDO.");        
 			Thread.sleep((int)(Math.random()*(4000 - 1000))+1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -36,20 +41,41 @@ public class Filosofo extends Thread {
 	}
 	
 	public void run() {
-	    while (true) {
+	    while (intentos>contador) {
+	    	contador++;
 	    	pensar();
-	    	cogerPalillos();
-	    	comer();	    	
-	        dejarPalillos();
+	    	if(cogerPalilloIzquierdo()){
+	    		if(cogerPalilloDerecho()){
+	    			System.out.println("Filósofo "+nombre+" cogió los palillos.");
+	    			comer();
+	    			contador = 0;	    		
+	    			dejarPalilloDerecho();
+	    			dejarPalilloIzquierdo();
+	    			System.out.println("Filósofo "+nombre+" soltó los palillos.");	    		}	    		
+	    		
+	    		
+	    	}else{
+	    		dejarPalilloIzquierdo();
+	    		System.out.println("Filósofo "+nombre+" intentó coger los palillos pero no pudo. Jajaja");
+	    	}
 	    }
+	    System.out.println("Filósofo "+nombre+" ha muerto de inanición.");
 	}
 
-	private void cogerPalillos() {
-		
+	private boolean cogerPalilloIzquierdo() {		
+		return palilloIzquierdo.tryAcquire();		
 	}
 	
-	private void dejarPalillos() {		
-		
+	private boolean cogerPalilloDerecho() {		
+		return palilloDerecho.tryAcquire();		
+	}
+	
+	private void dejarPalilloIzquierdo() {		
+		palilloIzquierdo.release();		
+	}
+	
+	private void dejarPalilloDerecho() {	
+		palilloDerecho.release();
 	}
 
 	public String getNombre() {
