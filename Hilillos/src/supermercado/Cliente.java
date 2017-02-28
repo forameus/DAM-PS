@@ -9,7 +9,7 @@ public class Cliente extends Thread {
 	private int tc;
 	private int tp;
 	private Monitor m;
-	private boolean noHaPagado = true;
+	private boolean esperar = true;
 	private int tiempoEsperando = 0;
 	
 	public Cliente(Monitor m){
@@ -18,6 +18,24 @@ public class Cliente extends Thread {
 		tc = (int)(Math.random()*(600 - 50))+ 50;
 		tp = (int)(Math.random()*((tp/10) - (tp/60)))+(tp/60);
 		this.m=m;
+	}
+	
+	public void run() {		
+		comprar();
+		esperar = m.entrarEnCola(this);
+		if(esperar)
+			m.apuntarClienteEnCola();
+		while(esperar){			
+			try {
+				//System.out.println("Cliente " + nombre +" "+apellido+" está ESPERANDO.");       
+				Thread.sleep(10);
+				tiempoEsperando+=10;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}	
+		//System.out.println("Cliente " + nombre +" "+apellido+" ha salido satisfecho :D"); 
+		m.abandonarSuper(this);		
 	}
 	
 	
@@ -34,48 +52,34 @@ public class Cliente extends Thread {
 		try {
 			//System.out.println("Cliente " + nombre +" "+apellido+" está pagando.");        
 			Thread.sleep(tp);
+			m.apuntarTiempoEsperado(tiempoEsperando);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void entrarEnCajero(){
-		Cajero caj = m.buscarCajero();
-		if(caj!=null){
-			caj.setOcupado(true);
-			caj.getSemaforo().tryAcquire();
-			pagar();
-			caj.getSemaforo().release();
-			caj.setOcupado(false);
-			noHaPagado = false;
-			m.apuntarTiempoEsperado(tiempoEsperando);
-		}
-		else{			
-			try {
-				//System.out.println("Cliente " + nombre +" "+apellido+" está ESPERANDO.");       
-				Thread.sleep(10);
-				tiempoEsperando+=10;
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+	
+		
+	
+	
+	
+	
+	public int getTP(){
+		return tp;
+	}
+	
+	public void setTiempoEsperado(int tiempo){
+		this.tiempoEsperando=tiempo;
 	}
 	
 	
 	
 	
-	public void run() {		
-		comprar();
-		while(noHaPagado){
-			entrarEnCajero();
-		}	
-		//System.out.println("Cliente " + nombre +" "+apellido+" ha salido satisfecho :D"); 
-		m.abandonarSuper(this);
+	@Override
+	public String toString() {
+		return "Cliente "+ nombre +" "+ apellido;
 	}
-	
-	
-	
-	
+
 	private String generadorNombre() {
 		String res = "";
 		Random r = new Random();
@@ -103,4 +107,9 @@ public class Cliente extends Thread {
 		return res;
 	}
 
+	public void setEsperar(boolean e) {
+		esperar = e;
+		
+	}
+	
 }
